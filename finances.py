@@ -1,3 +1,5 @@
+import json
+
 monthlyReport = {}
 
 def salaryDetails() :
@@ -37,5 +39,5 @@ while True:
     if repeat == "no":
         break
 
-print(monthlyReport)
+print(json.dumps(monthlyReport, indent=4))
 print("\tThank you for using the finances program")
