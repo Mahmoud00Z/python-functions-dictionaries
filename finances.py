@@ -1,3 +1,5 @@
+monthlyReport = {}
+
 def salaryDetails() :
     salary = float(input("Plese enter your salary for this month:  "))
     month = input("Please enter the name of this month: ")
@@ -14,21 +16,26 @@ def calculateExpenses(salary, savingsP, rentP, electricityP) :
     remaining = salary - savings - rent - electricity
     return savings, rent, electricity, remaining
 
-def results(salary, month, expenses) :
-    print("Salary for the month of ", month, " is ", salary)
-    print("Savings for the month of ", month, " is ", expenses[0])
-    print("Rent for the month of ", month, " is ", expenses[1])
-    print("Electricity for the month of ", month, " is ", expenses[2])
-    print("Remaining amount for the month of ", month, " is ", expenses[3])
-    yearlyRent = expenses[1] * 12
-    yearlyElecticity = expenses[2] * 12
-    salarySquared = salary * salary
-    extra = 50
-    if expenses[0] > 0:
-        extraSavRatio = extra / expenses[0]
-    else:
-        extraSavRatio = 0
-    print("Yearly rent is ", yearlyRent)
-    print("Yearly electricity is ", yearlyElecticity)
-    print("Square of salary is ", salarySquared)
-    print(f"If $50 extra is divided by savings, the ratio is: {extraSavRatio}")
+def storeResults(month, salary, expenses) :
+    monthlyReport[month] = {"salary": salary,
+     "savings": expenses[0],
+     "rent": expenses[1], 
+     "electricity": expenses[2], 
+     "remaining": expenses[3], 
+     "yearly rent": expenses[1] * 12,
+     "yearly electricity": expenses[2] * 12,
+     "salary squared": salary * salary}
+     
+
+print("\tWelcome to the finances program")
+
+while True:
+    salary, month, savingsP, rentP, electricityP = salaryDetails()
+    expenses = calculateExpenses(salary, savingsP, rentP, electricityP)
+    storeResults(month, salary, expenses)
+    repeat = input("Do you want to enter another month? (yes/no): ").lower()
+    if repeat == "no":
+        break
+
+print(monthlyReport)
+print("\tThank you for using the finances program")
