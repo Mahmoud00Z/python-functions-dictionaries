@@ -1,13 +1,11 @@
 def salaryDetails() :
     salary = float(input("Plese enter your salary for this month:  "))
     month = input("Please enter the name of this month: ")
-    return salary, month
-
-def expensesDetails() :
     savingsP = float(input("Please enter savings percentage : "))
     rentP = float(input("Please enter rent percentage : "))
     electricityP = float(input("Please enter electricity percentage : "))
-    return savingsP, rentP, electricityP
+    return salary, month, savingsP, rentP, electricityP
+
 
 def calculateExpenses(salary, savingsP, rentP, electricityP) :
     savings = (salary * savingsP) / 100
